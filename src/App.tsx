@@ -8,12 +8,10 @@ import { Link } from 'react-router-dom'
 function App() {
 
   const [apiData, setApiData] = useState<string>("")
-  const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchApi = async () => {
       try {
-        setLoading(true)
         const data = await getApi();
 
         if (!data) throw new Error("Error fetching data in front.")
@@ -21,13 +19,9 @@ function App() {
         if (data) {
           //console.log("DATA", data)
           setApiData(data)
-          setLoading(false)
         }
       } catch (error) {
         console.log(error)
-        setLoading(false)
-      } finally {
-        setLoading(false)
       }
     }
 
